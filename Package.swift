@@ -5,22 +5,33 @@ import PackageDescription
 
 let package = Package(
     name: "swift-6.2-test",
+    platforms: [
+        // .macOS(.v26) works but .macOS(.v15) fail
+        .macOS(.v15),
+    ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "swift-6.2-test",
-            targets: ["swift-6.2-test"]
+            targets: [
+                "swift-6.2-test"
+            ],
         ),
     ],
+    dependencies: [
+        .package(url: "https://github.com/swiftlang/swift-subprocess.git", from: "0.1.0"),
+    ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "swift-6.2-test"
+            name: "swift-6.2-test",
+            dependencies: [
+                .product(name: "Subprocess", package: "swift-subprocess"),
+            ],
         ),
         .testTarget(
             name: "swift-6.2-testTests",
-            dependencies: ["swift-6.2-test"]
+            dependencies: [
+                "swift-6.2-test",
+            ],
         ),
     ]
 )
