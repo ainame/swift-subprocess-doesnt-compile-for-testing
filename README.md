@@ -1,3 +1,8 @@
+The issue was fixed
+https://github.com/swiftlang/swift-package-manager/issues/9163
+
+-------------
+
 A minimum SPM project with swift-subprocess fail to run swift-testing tests when targeting macOS 15.
 
 * macOS 26
